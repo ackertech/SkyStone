@@ -13,19 +13,21 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 public class MecanumDrive implements DriveTrain {
 
+   // Instance Variables & Constants
+
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
     public DcMotor rearRightMotor;
     public DcMotor rearLeftMotor;
-    public LinearOpMode linearOp = null;
-
     public static final double TICKS_PER_ROTATION = 386.3;   // GoBilda Motor TICKS
 
 
     //FTC SDK Requirement
+    public LinearOpMode linearOp = null;
     public void setLinearOp (LinearOpMode Op) {
         linearOp = Op;
     }
+
 
     // Rotating with Gyro
     public Orientation angles;
@@ -107,22 +109,6 @@ public class MecanumDrive implements DriveTrain {
     }
 
 
-    // Assessor Methods for Instance Variables
-    public void setFrontLeftPower (double speed) {
-        frontLeftMotor.setPower(speed);
-    }
-
-    public void setRearLeftPower (double speed) {
-        rearLeftMotor.setPower(speed);
-    }
-
-    public void setFrontRightPower (double speed) {
-        frontRightMotor.setPower(speed);
-    }
-
-    public void setRearRightPower (double speed) {
-        rearRightMotor.setPower(speed);
-    }
 
     // Powers Motors with Encoder Counts
 
@@ -201,6 +187,8 @@ public class MecanumDrive implements DriveTrain {
         stopMotors();
     }
 
+
+    // Check ANgle with Gyro
 
     public void checkAngle (double angle) {
 

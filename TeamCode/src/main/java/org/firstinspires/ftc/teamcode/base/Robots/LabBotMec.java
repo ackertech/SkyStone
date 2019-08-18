@@ -1,29 +1,34 @@
 package org.firstinspires.ftc.teamcode.base.Robots;
 
-import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.teamcode.base.Drivetrains.MecanumDrive;
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.base.Drivetrains.MecanumDrive;
 
 
 public class LabBotMec extends MecanumDrive {
 
     //Robot Hardware Constructors
+
     public Servo HoodLeft = null;
     public Servo HoodRight = null;
     public Servo RearLift = null;
     public HardwareMap hwBot  =  null;
-    public LinearOpMode linearOp = null;
     public RevBlinkinLedDriver blinkinLedDriver;
     public RevBlinkinLedDriver.BlinkinPattern pattern;
 
-   // Robot variables & constants
 
 
    //FTC SDK Requirement
+   public LinearOpMode linearOp = null;
    public void setLinearOp (LinearOpMode Op) {
        linearOp = Op;
    }
@@ -53,9 +58,8 @@ public class LabBotMec extends MecanumDrive {
 
 
         //Initialize Motor Run Mode for Robot
-
-        //setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -78,7 +82,7 @@ public class LabBotMec extends MecanumDrive {
         pattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_LAVA_PALETTE;
         blinkinLedDriver.setPattern(pattern);
 
-        /** Define and Initialize Gyro
+        //Define and Initialize Gyro
 
         BNO055IMU.Parameters parametersimu = new BNO055IMU.Parameters();
         parametersimu.angleUnit = BNO055IMU.AngleUnit.DEGREES;
@@ -92,14 +96,12 @@ public class LabBotMec extends MecanumDrive {
         imu.initialize(parametersimu);
 
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-**/
 
 
 
 
 
     }
-
 
 
 

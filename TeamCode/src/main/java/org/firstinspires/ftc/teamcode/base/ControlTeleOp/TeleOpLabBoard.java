@@ -21,6 +21,8 @@ public class TeleOpLabBoard extends OpMode {
     double leftStickYVal;
     double leftStickXVal;
     double rightStickXVal;
+    double rightStickYVal;
+
 
     double frontLeftSpeed;
     double frontRightSpeed;
@@ -89,30 +91,22 @@ public class TeleOpLabBoard extends OpMode {
 
     public void drive () {
 
-        leftStickYVal = -gamepad1.left_stick_y;
-        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
-        leftStickXVal = gamepad1.left_stick_x;
-        leftStickXVal = Range.clip(leftStickXVal, -1, 1);
-        rightStickXVal = gamepad1.right_stick_x;
-        rightStickXVal = Range.clip(rightStickXVal, -1, 1);
 
-        rearLeftSpeed = leftStickYVal - leftStickXVal + rightStickXVal;
+        rearLeftSpeed = -gamepad1.left_stick_y;
         rearLeftSpeed = Range.clip(rearLeftSpeed, -1, 1);
 
-        rearRightSpeed = leftStickYVal + leftStickXVal - rightStickXVal;
+        rearRightSpeed = -gamepad1.right_stick_y;;
         rearRightSpeed = Range.clip(rearRightSpeed, -1, 1);
 
 
         if (rearLeftSpeed <= powerThreshold && rearLeftSpeed >= -powerThreshold) {
-            rearLeftSpeed = 0;
-            rookieBoard.rearLeftMotor.setPower(rearLeftSpeed);
+            rookieBoard.rearLeftMotor.setPower(0);
         } else {
             rookieBoard.rearLeftMotor.setPower(rearLeftSpeed);
         }
 
         if (rearRightSpeed <= powerThreshold && rearRightSpeed >= -powerThreshold){
-            rearRightSpeed = 0;
-            rookieBoard.rearRightMotor.setPower(rearRightSpeed);
+            rookieBoard.rearRightMotor.setPower(0);
         } else {
             rookieBoard.rearRightMotor.setPower(rearRightSpeed);
         }
@@ -121,11 +115,14 @@ public class TeleOpLabBoard extends OpMode {
 
 
     public void controlLinearExtention() {
-        if (gamepad1.y) {
+        if (gamepad1.left_trigger > powerThreshold) {
             rookieBoard.linearExtend(0.5);
         }
-        else if (gamepad1.a) {
+        else if (gamepad1.right_trigger > powerThreshold) {
             rookieBoard.linearRetract(0.5);
+        }
+        else {
+            rookieBoard.linearRetract(0);
         }
 
     }
