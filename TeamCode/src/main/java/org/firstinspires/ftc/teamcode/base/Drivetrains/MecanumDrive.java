@@ -29,7 +29,7 @@ public class MecanumDrive implements DriveTrain {
     }
 
 
-    // Rotating with Gyro
+    // Rotating with GyroSensor
     public Orientation angles;
     public Acceleration gravity;
     public BNO055IMU imu;
@@ -188,20 +188,20 @@ public class MecanumDrive implements DriveTrain {
     }
 
 
-    // Check ANgle with Gyro
+    // Check ANgle with GyroSensor
 
-    public void checkAngle (double angle) {
+    public void rotateDirection (double speed, double angle) {
 
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
          if (angles.firstAngle >= angle + TOLERANCE) {
             while (angles.firstAngle >=  angle + TOLERANCE) {
-                rotateRight(SPEED);
+                rotateRight(speed);
                 angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
             }
         }
         else if (angles.firstAngle <= angle - TOLERANCE) {
             while (angles.firstAngle <= angle - TOLERANCE) {
-                rotateLeft(SPEED);
+                rotateLeft(speed);
                 angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
             }
         }

@@ -79,7 +79,7 @@ public class LabBotAWD extends TankAWDDrive {
         pattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE;
         blinkinLedDriver.setPattern(pattern);
 
-        /** Define and Initialize Gyro
+        /** Define and Initialize GyroSensor
 
         BNO055IMU.Parameters parametersimu = new BNO055IMU.Parameters();
         parametersimu.angleUnit = BNO055IMU.AngleUnit.DEGREES;

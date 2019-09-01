@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.base.Robots.LabBotMec;
 
 
 @Autonomous(name = "Auto - LabBot Mecanum")
-@Disabled
+//@Disabled
 public class AutoMec extends LinearOpMode {
 
     // Object Construction
@@ -28,6 +28,7 @@ public class AutoMec extends LinearOpMode {
 
         //Hardware Initialization from Robot Class
         AckerBot.init(hardwareMap);
+        AckerBot.gyroReset();
 
         waitForStart();
 
@@ -58,21 +59,45 @@ public class AutoMec extends LinearOpMode {
             telemetry.update();
             sleep(2000);
 
-
             AckerBot.driveBackward(SPD_DRIVE_MAX,5.0);
             sleep(1000);
             telemetry.addData("Status", "Drive Backward with Encoders");
             telemetry.update();
 
-            AckerBot.rotateLeft(SPD_DRIVE_MAX, 5.0);
+            AckerBot.stopMotors();
             sleep(1000);
-            telemetry.addData("Status", "Rotate Left with Encoders");
+
+            AckerBot.rotateDirection(SPD_DRIVE_MAX, 90);
+            sleep(1000);
+            telemetry.addData("Status", "Rotate Left 90 degrees");
             telemetry.update();
 
-            AckerBot.rotateRight(SPD_DRIVE_MAX, 5.0);
+            AckerBot.stopMotors();
             sleep(1000);
-            telemetry.addData("Status", "Rotate Right with Encoders");
+
+            AckerBot.rotateDirection(SPD_DRIVE_MAX, 2);
+            sleep(1000);
+            telemetry.addData("Status", "Rotate Right to zero");
             telemetry.update();
+
+            AckerBot.stopMotors();
+            sleep(1000);
+
+            AckerBot.rotateDirection(SPD_DRIVE_MAX, -90);
+            sleep(1000);
+            telemetry.addData("Status", "Rotate Right to 90 Degrees");
+            telemetry.update();
+
+            AckerBot.stopMotors();
+            sleep(1000);
+
+            AckerBot.rotateDirection(SPD_DRIVE_MAX, 2);
+            sleep(1000);
+            telemetry.addData("Status", "Rotate Right to zero");
+            telemetry.update();
+
+            AckerBot.stopMotors();
+            sleep(1000);
 
             AckerBot.strafeLeft(SPD_DRIVE_MAX,5.0);
             sleep(1000);

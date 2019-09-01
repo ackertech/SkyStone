@@ -24,7 +24,7 @@ public class TankAWDDrive implements DriveTrain {
         linearOp = Op;
     }
 
-    // Rotating with Gyro
+    // Rotating with GyroSensor
     public Orientation angles;
     public Acceleration gravity;
     public BNO055IMU imu;
